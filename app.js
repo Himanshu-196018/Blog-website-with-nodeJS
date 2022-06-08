@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
+const _ = require("lodash");
 const { render } = require("express/lib/response");
 
 const homeStartingContent = `Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsumhas been the 
@@ -54,8 +55,8 @@ app.post('/compose', function(req, res) {
 
 app.get('/posts/:day', function(req, res) {
     posts.forEach((ele) => {
-        if(ele.title === req.params.day){
-            console.log("Match Found");
+        if(_.lowerCase(ele.title) === _.lowerCase(req.params.day)){
+            res.render("post", {postTitle : ele.title, postBody : ele.content})
         }
     });
 })

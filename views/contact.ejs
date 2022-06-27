@@ -1,4 +1,8 @@
 <%- include("partials/header"); -%>
 <h1>Contact Us</h1>
-<P><%= contactText %></P>
+<P>
+    <% contactText.forEach((line) => { %>
+        <p><%= line %></p>
+    <% }); %>
+</P>
 <%- include("partials/footer"); -%>
